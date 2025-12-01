@@ -1,34 +1,15 @@
 #!/bin/bash
 
-# install deps
-sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm --needed git base-devel
+# updates system
+sudo dnf update -y
 
 ## Installing flatpak and setting-up ##
-sudo pacman -S --noconfirm --needed flatpak flatpak-kcm
+sudo dnf install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-## Installing yay ##
-if ! command -v yay &>/dev/null; then
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
-    cd ..
-    rm -rf yay
-fi
-
-## Fixing GTK KDE theme ##
-sudo pacman -S --noconfirm --needed xdg-desktop-portal-gtk
-
-mkdir -p ~/.config/xdg-desktop-portal/
-echo "[preferred]\ndefault=kde\norg.freedesktop.impl.portal.Settings=kde;gtk;" > ~/.config/xdg-desktop-portal/portals.conf
-
-## Installing firefox ##
-flatpak install -y flathub org.mozilla.firefox
 
 ## Installing Steam ##
 flatpak install -y flathub com.valvesoftware.Steam
-yay -S --noconfirm --needed steam-devices-git
+sudo dnf install -y steam-devices
 
 # Allow Steam flatpak create shortcuts in desktop
 flatpak override --user --filesystem="$(xdg-user-dir DESKTOP):create" com.valvesoftware.Steam
@@ -43,3 +24,4 @@ sudo chmod +x /usr/local/bin/steam
 
 echo ""
 echo "Done, reboot to apply some changes"
+
