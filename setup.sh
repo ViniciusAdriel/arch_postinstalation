@@ -47,6 +47,21 @@ sudo pacman -S --noconfirm --needed v4l2loopback-dkms
 ## Instaling CJK fonts ##
 sudo pacman -S --noconfirm --needed noto-fonts-cjk
 
+## Replacing Discover to Bazaar ##
+flatpak install --user -y flathub io.github.kolunmi.Bazaar
+
+echo "
+[Desktop Entry]
+Type=Application
+Name=Bazaar
+Exec=flatpak run io.github.kolunmi.Bazaar
+Icon=io.github.kolunmi.Bazaar
+Categories=System;PackageManager;
+" > $HOME/.local/share/applications/io.github.kolunmi.Bazaar.desktop
+update-desktop-database ~/.local/share/applications
+
+flatpak override --user --filesystem=home io.github.kolunmi.Bazaar
+
 ## Done ##
 
 echo ""
