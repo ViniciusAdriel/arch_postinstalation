@@ -7,7 +7,6 @@ sudo pacman -S --noconfirm --needed git base-devel
 ## Installing flatpak and setting-up ##
 sudo pacman -S --noconfirm --needed flatpak flatpak-kcm
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak config --system=false
 
 ## Installing yay ##
 if ! command -v yay &>/dev/null; then
@@ -25,10 +24,10 @@ mkdir -p ~/.config/xdg-desktop-portal/
 echo "[preferred]\ndefault=kde\norg.freedesktop.impl.portal.Settings=kde;gtk;" > ~/.config/xdg-desktop-portal/portals.conf
 
 ## Installing firefox ##
-flatpak install -y flathub org.mozilla.firefox
+flatpak install --user -y flathub org.mozilla.firefox
 
 ## Installing Steam ##
-flatpak install -y flathub com.valvesoftware.Steam
+flatpak install --user -y flathub com.valvesoftware.Steam
 yay -S --noconfirm --needed steam-devices-git
 
 # Allow Steam flatpak create shortcuts in desktop
@@ -41,7 +40,7 @@ echo -e '#!/bin/bash\nflatpak run com.valvesoftware.Steam "$@"' | sudo tee /usr/
 sudo chmod +x /usr/local/bin/steam
 
 ## Installing OBS ##
-flatpak install -y flathub com.obsproject.Studio
+flatpak install --user -y flathub com.obsproject.Studio
 # module to enable virtual camera
 sudo pacman -S --noconfirm --needed v4l2loopback-dkms
 
