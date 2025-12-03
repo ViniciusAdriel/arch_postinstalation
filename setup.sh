@@ -39,6 +39,11 @@ ln -s "$(xdg-user-dir DESKTOP)" "$HOME/.var/app/com.valvesoftware.Steam/Desktop"
 echo -e '#!/bin/bash\nflatpak run com.valvesoftware.Steam "$@"' | sudo tee /usr/local/bin/steam > /dev/null
 sudo chmod +x /usr/local/bin/steam
 
+## Installing OBS ##
+flatpak install -y flathub com.obsproject.Studio
+# module to enable virtual camera
+sudo pacman -S --noconfirm --needed v4l2loopback-dkms
+
 ## Done ##
 
 echo ""
