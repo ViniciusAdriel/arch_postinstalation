@@ -7,6 +7,7 @@ sudo pacman -S --noconfirm --needed git base-devel
 ## Installing flatpak and setting-up ##
 sudo pacman -S --noconfirm --needed flatpak flatpak-kcm
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak config --system=false
 
 ## Installing yay ##
 if ! command -v yay &>/dev/null; then
