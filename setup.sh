@@ -44,6 +44,9 @@ flatpak install --user -y flathub com.obsproject.Studio
 # module to enable virtual camera
 sudo pacman -S --noconfirm --needed v4l2loopback-dkms
 
+## Instaling CJK fonts ##
+sudo pacman -S --noconfirm --needed noto-fonts-cjk
+
 ## Done ##
 
 echo ""
